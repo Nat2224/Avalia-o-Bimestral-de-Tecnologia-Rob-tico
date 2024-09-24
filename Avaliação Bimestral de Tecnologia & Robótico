@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.10.0/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <main>
+    </main>
+    <script src="sketch.js"></script>
+  </body>
+</html>
+let angle = 0;
+let gridSize = 5; // Number of cubes in each row and column
+let cubeSize = 40; // Size of each cube
+
+function setup() {
+  createCanvas(400, 400, WEBGL);
+  noFill();
+}
+
+function draw() {
+  background(220);
+  
+  let spacing = cubeSize * 1.5;
+  translate(-spacing * (gridSize - 1) / 2, -spacing * (gridSize - 1) / 2, 0);
+  
+  for (let x = 0; x < gridSize; x++) {
+    for (let y = 0; y < gridSize; y++) {
+      push();
+      translate(x * spacing, y * spacing, 0);
+      rotateX(angle);
+      rotateY(angle * 0.3);
+      box(cubeSize);
+      pop();
+    }
+  }
+  
+  angle += 0.03; // Increase to rotate faster
+}
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
